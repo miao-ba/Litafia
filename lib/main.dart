@@ -23,11 +23,13 @@ final randomNumberProvider = StateNotifierProvider(
 );
 
 class RandomNumberApp extends StatelessWidget {
+
   const RandomNumberApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Random number'),
@@ -45,6 +47,17 @@ class RandomNumberApp extends StatelessWidget {
                     child: const Text('Generate'),
                     onPressed: () =>
                         ref.read(randomNumberProvider.notifier).generate(),
+
+                  );
+                },
+              ),
+              Consumer(
+                builder: (context, ref, child) {
+                  return ElevatedButton(
+                    child: const Text('Generate'),
+                    onPressed: () =>
+                        ref.read(randomNumberProvider.notifier).generate(),
+
                   );
                 },
               ),
